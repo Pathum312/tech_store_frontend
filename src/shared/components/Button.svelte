@@ -1,11 +1,13 @@
 <script>
 	export let rosy_brown = false;
+	export let disabled = false;
 </script>
 
 <button
 	class="cursor-pointer font-bold font-mono w-full md:h-10 sm:h-10 rounded-md py-2"
 	class:rosy_brown
 	on:click
+	{disabled}
 >
 	<slot />
 </button>
