@@ -12,8 +12,14 @@
 		email: '',
 		password: '',
 		confirmPassword: '',
+		street: '',
+		city: '',
+		state: '',
+		zip: '',
+		country: '',
 	};
 	let goToSecondPage = false;
+	let goToThirdPage = false;
 	const dispatch = createEventDispatcher();
 
 	const handleSubmit = () => {
@@ -22,17 +28,22 @@
 	};
 
 	const handleClick = (type: string) => {
-		if (type === 'Second Page') {
-			goToSecondPage = true;
-		} else if (type === 'First Page') {
+		if (type === 'First Page') {
 			goToSecondPage = false;
+			goToThirdPage = false;
+		} else if (type === 'Second Page') {
+			goToSecondPage = true;
+			goToThirdPage = false;
+		} else if (type === 'Third Page') {
+			goToSecondPage = false;
+			goToThirdPage = true;
 		}
 	};
 </script>
 
 <form class="w-96 my-0 mx-auto" on:submit|preventDefault={handleSubmit}>
-	<h1 class="text-3xl underline underline-offset-8 text-center font-bold font-mono">Tech Store</h1>
-	{#if !goToSecondPage}
+	<h1 class="text-3xl underline underline-offset-8 text-center font-bold font-mono">Register</h1>
+	{#if !goToSecondPage && !goToThirdPage}
 		<div in:scale class="m-0 p-0">
 			<div class="my-5 mx-auto">
 				<label for="name" class="text-lg font-bold font-mono my-2.5 mx-auto">Name</label>
@@ -68,7 +79,7 @@
 				NEXT
 			</Button>
 		</div>
-	{:else if goToSecondPage}
+	{:else if goToSecondPage && !goToThirdPage}
 		<div in:scale class="m-0 p-0">
 			<div class="my-5 mx-auto">
 				<label for="type" class="text-lg font-bold font-mono my-2.5 mx-auto">Account Type</label>
@@ -117,6 +128,64 @@
 						NEXT
 					</Button>
 				{/if}
+			</div>
+		</div>
+	{:else if !goToSecondPage && goToThirdPage}
+		<div in:scale class="m-0 p-0">
+			<div class="my-5 mx-auto">
+				<label for="address" class="text-lg font-bold font-mono my-2.5 mx-auto">Address</label>
+				<input
+					type="text"
+					id="address"
+					placeholder="Street"
+					bind:value={payload.street}
+					on:keydown={handleKeyDown}
+					class="w-full rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold"
+				/>
+				<div class="flex justify-between mt-1 mb-0 mx-0 p=0">
+					<input
+						type="text"
+						id="address"
+						placeholder="City"
+						bind:value={payload.city}
+						on:keydown={handleKeyDown}
+						class="w-2/4 rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold mr-1"
+					/>
+					<input
+						type="text"
+						id="address"
+						placeholder="State"
+						bind:value={payload.state}
+						on:keydown={handleKeyDown}
+						class="w-2/4 rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold ml-1"
+					/>
+				</div>
+				<div class="flex justify-between mt-1 mb-0 mx-0 p=0">
+					<input
+						type="text"
+						id="address"
+						placeholder="Zip"
+						bind:value={payload.zip}
+						on:keydown={handleKeyDown}
+						class="w-2/4 rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold mr-1"
+					/>
+					<input
+						type="text"
+						id="address"
+						placeholder="Country"
+						bind:value={payload.country}
+						on:keydown={handleKeyDown}
+						class="w-2/4 rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold ml-1"
+					/>
+				</div>
+			</div>
+			<div class="flex justify-between m-0 p-0">
+				<Button rosy_brown={true} quater={true} on:click={() => handleClick('Second Page')}>
+					BACK
+				</Button>
+				<Button rosy_brown={true} medium={true} disabled={signingIn}>
+					{signingIn ? 'REGISTERING...' : 'REGISTER'}
+				</Button>
 			</div>
 		</div>
 	{/if}

@@ -14,7 +14,7 @@
 </script>
 
 <form class="w-96 my-0 mx-auto" on:submit|preventDefault={handleSubmit}>
-	<h1 class="text-3xl underline underline-offset-8 text-center font-bold font-mono">Tech Store</h1>
+	<h1 class="text-3xl underline underline-offset-8 text-center font-bold font-mono">Login</h1>
 	<div class="my-5 mx-auto">
 		<label for="email" class="text-lg font-bold font-mono my-2.5 mx-auto">Email</label>
 		<input
