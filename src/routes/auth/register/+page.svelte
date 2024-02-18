@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Card, LoginForm } from '../../../shared/components';
+	import { Card, RegisterForm } from '../../../shared/components';
 
-	let loggingIn = false;
+	let signingIn = false;
 
 	const handleSubmit = (data: any) => {
 		const { email, password } = data.detail;
 		if (email && password) {
-			loggingIn = true;
+			signingIn = true;
 			console.log(email, password);
 		}
 	};
@@ -14,6 +14,6 @@
 
 <div class="min-h-screen m-auto bg-gray-100 flex items-center justify-center">
 	<Card>
-		<LoginForm on:submit={handleSubmit} {loggingIn} />
+		<RegisterForm on:submit={handleSubmit} {signingIn} />
 	</Card>
 </div>
