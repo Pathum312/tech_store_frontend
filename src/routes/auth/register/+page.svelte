@@ -4,8 +4,8 @@
 	let signingIn = false;
 
 	const handleSubmit = (data: any) => {
-		const { email, password } = data.detail;
-		if (email && password) {
+		const { email, password, role } = data.detail;
+		if (role === 'SELLER' && email && password) {
 			signingIn = true;
 			console.log(email, password);
 		}

@@ -1,6 +1,7 @@
-export const handleKeyDown = (event: any) => {
+export const handleKeyDown = (event: any, preventDefault: any) => {
 	// Waiting till user presses the Enter key
 	if (event.key === 'Enter') {
+		if (preventDefault) event.preventDefault();
 		// Finding all the input tags in that page
 		const inputs = document.getElementsByTagName('input');
 		// Getting the index of the current input tag

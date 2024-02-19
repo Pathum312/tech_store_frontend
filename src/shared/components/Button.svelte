@@ -13,6 +13,8 @@
 	class:medium
 	class:quater
 	on:click
+	on:mousedown
+	on:keydown
 	{disabled}
 >
 	<slot />

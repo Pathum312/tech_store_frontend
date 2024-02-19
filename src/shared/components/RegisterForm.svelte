@@ -27,6 +27,12 @@
 		dispatch('submit', payload);
 	};
 
+	const handleNext = (event: any) => {
+		if (event.key === 'Enter') {
+			handleClick('Third Page');
+		}
+	};
+
 	const handleClick = (type: string) => {
 		if (type === 'First Page') {
 			goToSecondPage = false;
@@ -51,7 +57,7 @@
 					type="text"
 					id="name"
 					bind:value={payload.name}
-					on:keydown={handleKeyDown}
+					on:keydown={event => handleKeyDown(event, true)}
 					class="w-full rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold"
 				/>
 			</div>
@@ -61,7 +67,7 @@
 					type="text"
 					id="username"
 					bind:value={payload.username}
-					on:keydown={handleKeyDown}
+					on:keydown={event => handleKeyDown(event, true)}
 					class="w-full rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold"
 				/>
 			</div>
@@ -71,7 +77,7 @@
 					type="text"
 					id="email"
 					bind:value={payload.email}
-					on:keydown={handleKeyDown}
+					on:keydown={event => handleKeyDown(event, false)}
 					class="w-full rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold"
 				/>
 			</div>
@@ -99,7 +105,7 @@
 					type="password"
 					id="password"
 					bind:value={payload.password}
-					on:keydown={handleKeyDown}
+					on:keydown={event => handleKeyDown(event, true)}
 					class="w-full rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold"
 				/>
 			</div>
@@ -111,12 +117,12 @@
 					type="password"
 					id="confirmPassword"
 					bind:value={payload.confirmPassword}
-					on:keydown={handleKeyDown}
+					on:keydown={handleNext}
 					class="w-full rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold"
 				/>
 			</div>
 			<div class="flex justify-between m-0 p-0">
-				<Button rosy_brown={true} quater={true} on:click={() => handleClick('First Page')}>
+				<Button rosy_brown={true} quater={true} on:mousedown={() => handleClick('First Page')}>
 					BACK
 				</Button>
 				{#if payload.role === 'SELLER'}
@@ -136,51 +142,51 @@
 				<label for="address" class="text-lg font-bold font-mono my-2.5 mx-auto">Address</label>
 				<input
 					type="text"
-					id="address"
+					id="street"
 					placeholder="Street"
 					bind:value={payload.street}
-					on:keydown={handleKeyDown}
+					on:keydown={event => handleKeyDown(event, true)}
 					class="w-full rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold"
 				/>
 				<div class="flex justify-between mt-1 mb-0 mx-0 p=0">
 					<input
 						type="text"
-						id="address"
+						id="city"
 						placeholder="City"
 						bind:value={payload.city}
-						on:keydown={handleKeyDown}
+						on:keydown={event => handleKeyDown(event, true)}
 						class="w-2/4 rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold mr-1"
 					/>
 					<input
 						type="text"
-						id="address"
+						id="state"
 						placeholder="State"
 						bind:value={payload.state}
-						on:keydown={handleKeyDown}
+						on:keydown={event => handleKeyDown(event, true)}
 						class="w-2/4 rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold ml-1"
 					/>
 				</div>
 				<div class="flex justify-between mt-1 mb-0 mx-0 p=0">
 					<input
 						type="text"
-						id="address"
+						id="zip"
 						placeholder="Zip"
 						bind:value={payload.zip}
-						on:keydown={handleKeyDown}
+						on:keydown={event => handleKeyDown(event, true)}
 						class="w-2/4 rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold mr-1"
 					/>
 					<input
 						type="text"
-						id="address"
+						id="country"
 						placeholder="Country"
 						bind:value={payload.country}
-						on:keydown={handleKeyDown}
+						on:keydown={event => handleKeyDown(event, false)}
 						class="w-2/4 rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold ml-1"
 					/>
 				</div>
 			</div>
 			<div class="flex justify-between m-0 p-0">
-				<Button rosy_brown={true} quater={true} on:click={() => handleClick('Second Page')}>
+				<Button rosy_brown={true} quater={true} on:mousedown={() => handleClick('Second Page')}>
 					BACK
 				</Button>
 				<Button rosy_brown={true} medium={true} disabled={signingIn}>
@@ -195,9 +201,6 @@
 </form>
 
 <style>
-	label {
-		color: #aa9fb1;
-	}
 	input,
 	select {
 		border-color: #aa9fb1;
@@ -208,7 +211,8 @@
 		border-color: #cca7a2;
 	}
 	h1,
-	p {
+	p,
+	label {
 		color: #aa9fb1;
 	}
 	a {

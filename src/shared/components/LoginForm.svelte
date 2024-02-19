@@ -21,7 +21,7 @@
 			type="text"
 			id="email"
 			bind:value={email}
-			on:keydown={handleKeyDown}
+			on:keydown={event => handleKeyDown(event, false)}
 			class="w-full rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold"
 		/>
 	</div>
@@ -31,7 +31,7 @@
 			type="password"
 			id="password"
 			bind:value={password}
-			on:keydown={handleKeyDown}
+			on:keydown={event => handleKeyDown(event, false)}
 			class="w-full rounded-md border-solid border-2 bg-neutral-50 md:h-10 sm:h-10 focus:outline-none py-2 px-2 font-semibold"
 		/>
 	</div>
@@ -44,9 +44,6 @@
 </form>
 
 <style>
-	label {
-		color: #aa9fb1;
-	}
 	input {
 		border-color: #aa9fb1;
 		color: #aa9fb1;
@@ -55,7 +52,8 @@
 		border-color: #cca7a2;
 	}
 	h1,
-	p {
+	p,
+	label {
 		color: #aa9fb1;
 	}
 	a {
