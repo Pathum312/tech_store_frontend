@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { handleKeyDown } from '../services';
+	import { handleKeyDown, isStringValid } from '../services';
 	import { scale } from 'svelte/transition';
 	import Button from './Button.svelte';
 	export let signingIn = false;
@@ -18,13 +18,50 @@
 		zip: '',
 		country: '',
 	};
+	let errors = {
+		name: '',
+		username: '',
+		role: '',
+		email: '',
+		password: '',
+		confirmPassword: '',
+		street: '',
+		city: '',
+		state: '',
+		zip: '',
+		country: '',
+	};
 	let goToSecondPage = false;
 	let goToThirdPage = false;
+	let isValid = false;
 	const dispatch = createEventDispatcher();
 
 	const handleSubmit = () => {
-		console.log(payload);
-		dispatch('submit', payload);
+		// Checks if the input data is valid
+		isValid = true;
+
+		// Check if the name field is not empty
+		if (isStringValid(payload.name, 1)) {
+			isValid = false;
+			errors.name = 'Name can not be empty!';
+		} else errors.name = '';
+
+		// Check if the username field is not empty
+		if (isStringValid(payload.username, 1)) {
+			isValid = false;
+			errors.username = 'Username can not be empty!';
+		} else errors.username = '';
+
+		// Check if the email field is not empty
+		if (isStringValid(payload.email, 1)) {
+			isValid = false;
+			errors.email = 'Email can not be empty!';
+		} else errors.email = '';
+
+		if (isValid) {
+			console.log(payload);
+			dispatch('submit', payload);
+		}
 	};
 
 	const handleNext = (event: any) => {
@@ -38,11 +75,18 @@
 			goToSecondPage = false;
 			goToThirdPage = false;
 		} else if (type === 'Second Page') {
-			goToSecondPage = true;
-			goToThirdPage = false;
+			if (payload.name && payload.username && payload.email) {
+				goToSecondPage = true;
+				goToThirdPage = false;
+				errors.name = '';
+				errors.username = '';
+				errors.email = '';
+			}
 		} else if (type === 'Third Page') {
-			goToSecondPage = false;
-			goToThirdPage = true;
+			if (payload.role && payload.password && payload.confirmPassword) {
+				goToSecondPage = false;
+				goToThirdPage = true;
+			}
 		}
 	};
 </script>
@@ -53,6 +97,7 @@
 		<div in:scale class="m-0 p-0">
 			<div class="my-5 mx-auto">
 				<label for="name" class="text-lg font-bold font-mono my-2.5 mx-auto">Name</label>
+				<div class="error font-bold text-sm">{errors.name}</div>
 				<input
 					type="text"
 					id="name"
@@ -63,6 +108,7 @@
 			</div>
 			<div class="my-5 mx-auto">
 				<label for="username" class="text-lg font-bold font-mono my-2.5 mx-auto">Username</label>
+				<div class="error font-bold text-sm">{errors.username}</div>
 				<input
 					type="text"
 					id="username"
@@ -73,6 +119,7 @@
 			</div>
 			<div class="my-5 mx-auto">
 				<label for="email" class="text-lg font-bold font-mono my-2.5 mx-auto">Email</label>
+				<div class="error font-bold text-sm">{errors.email}</div>
 				<input
 					type="text"
 					id="email"
@@ -217,5 +264,8 @@
 	}
 	a {
 		color: #cca7a2;
+	}
+	.error {
+		color: #d91b42;
 	}
 </style>

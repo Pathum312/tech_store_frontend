@@ -18,3 +18,7 @@ export const handleKeyDown = (event: any, preventDefault: any) => {
 		}
 	}
 };
+
+export const isStringValid = (value: string, length: number) => {
+	return value.trim().length < length;
+};
