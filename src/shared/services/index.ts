@@ -20,5 +20,12 @@ export const handleKeyDown = (event: any, preventDefault: any) => {
 };
 
 export const isStringValid = (value: string, length: number) => {
+	// Check the length of the string
 	return value.trim().length < length;
+};
+
+export const validateEmailFormat = (email: string) => {
+	// Expression for validating the email format
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	return emailRegex.test(email);
 };

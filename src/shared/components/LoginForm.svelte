@@ -1,15 +1,41 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { handleKeyDown } from '../services';
+	import { handleKeyDown, isStringValid, validateEmailFormat } from '../services';
 	import Button from './Button.svelte';
 	export let loggingIn = false;
 
 	let email = '';
 	let password = '';
+	let errors = {
+		email: '',
+		password: '',
+	};
+	let isValid = false;
 	const dispatch = createEventDispatcher();
 
 	const handleSubmit = () => {
-		dispatch('submit', { email, password });
+		// Checks if the input data is valid
+		isValid = true;
+
+		// Check if the email field is not empty
+		if (isStringValid(email, 1)) {
+			isValid = false;
+			errors.email = 'Email can not be empty!';
+			// Check the format of the email
+		} else if (!validateEmailFormat(email)) {
+			isValid = false;
+			errors.email = 'Email is not valid!';
+		} else errors.email = '';
+
+		// Check if the password field is not empty
+		if (isStringValid(password, 1)) {
+			isValid = false;
+			errors.password = 'Password can not be empty!';
+		} else errors.password = '';
+
+		if (isValid) {
+			dispatch('submit', { email, password });
+		}
 	};
 </script>
 
@@ -17,6 +43,7 @@
 	<h1 class="text-3xl underline underline-offset-8 text-center font-bold font-mono">Login</h1>
 	<div class="my-5 mx-auto">
 		<label for="email" class="text-lg font-bold font-mono my-2.5 mx-auto">Email</label>
+		<div class="error font-bold text-sm">{errors.email}</div>
 		<input
 			type="text"
 			id="email"
@@ -27,6 +54,7 @@
 	</div>
 	<div class="my-5 mx-auto">
 		<label for="password" class="text-lg font-bold font-mono my-2.5 mx-auto">Password</label>
+		<div class="error font-bold text-sm">{errors.password}</div>
 		<input
 			type="password"
 			id="password"
@@ -58,5 +86,8 @@
 	}
 	a {
 		color: #cca7a2;
+	}
+	.error {
+		color: #d91b42;
 	}
 </style>

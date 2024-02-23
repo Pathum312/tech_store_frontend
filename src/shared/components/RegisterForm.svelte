@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { handleKeyDown, isStringValid } from '../services';
+	import { handleKeyDown, isStringValid, validateEmailFormat } from '../services';
 	import { scale } from 'svelte/transition';
 	import Button from './Button.svelte';
 	export let signingIn = false;
@@ -56,7 +56,62 @@
 		if (isStringValid(payload.email, 1)) {
 			isValid = false;
 			errors.email = 'Email can not be empty!';
+			// Check the format of the email
+		} else if (!validateEmailFormat(payload.email)) {
+			isValid = false;
+			errors.email = 'Email is not valid!';
 		} else errors.email = '';
+
+		// Check if the role field is not empty
+		if (isStringValid(payload.role, 1)) {
+			isValid = false;
+			errors.role = 'A type must be selected!';
+		} else errors.role = '';
+
+		// Check if the password field is not empty
+		if (isStringValid(payload.password, 1)) {
+			isValid = false;
+			errors.password = 'Password can not be empty!';
+		} else if (isStringValid(payload.password, 5)) {
+			isValid = false;
+			errors.password = 'Password must be longer than 5 characters!';
+		} else errors.password = '';
+
+		// Check if confirm password matches the password
+		if (payload.password !== payload.confirmPassword) {
+			isValid = false;
+			errors.confirmPassword = 'Password does not match!';
+		} else errors.confirmPassword = '';
+
+		// Check if the street field is not empty
+		if (isStringValid(payload.street, 1)) {
+			isValid = false;
+			errors.street = 'Street can not be empty!';
+		} else errors.street = '';
+
+		// Check if the city field is not empty
+		if (isStringValid(payload.city, 1)) {
+			isValid = false;
+			errors.city = 'City can not be empty!';
+		} else errors.city = '';
+
+		// Check if the state field is not empty
+		if (isStringValid(payload.state, 1)) {
+			isValid = false;
+			errors.state = 'State can not be empty!';
+		} else errors.state = '';
+
+		// Check if the zip field is not empty
+		if (isStringValid(payload.zip, 1)) {
+			isValid = false;
+			errors.zip = 'Zip can not be empty!';
+		} else errors.zip = '';
+
+		// Check if the country field is not empty
+		if (isStringValid(payload.country, 1)) {
+			isValid = false;
+			errors.country = 'Country can not be empty!';
+		} else errors.country = '';
 
 		if (isValid) {
 			console.log(payload);
@@ -83,9 +138,12 @@
 				errors.email = '';
 			}
 		} else if (type === 'Third Page') {
-			if (payload.role && payload.password && payload.confirmPassword) {
+			if (payload.role && payload.password && payload.confirmPassword === payload.password) {
 				goToSecondPage = false;
 				goToThirdPage = true;
+				errors.role = '';
+				errors.password = '';
+				errors.confirmPassword = '';
 			}
 		}
 	};
@@ -136,6 +194,7 @@
 		<div in:scale class="m-0 p-0">
 			<div class="my-5 mx-auto">
 				<label for="type" class="text-lg font-bold font-mono my-2.5 mx-auto">Account Type</label>
+				<div class="error font-bold text-sm">{errors.role}</div>
 				<select
 					id="type"
 					name="type"
@@ -148,6 +207,7 @@
 			</div>
 			<div class="my-5 mx-auto">
 				<label for="password" class="text-lg font-bold font-mono my-2.5 mx-auto">Password</label>
+				<div class="error font-bold text-sm">{errors.password}</div>
 				<input
 					type="password"
 					id="password"
@@ -160,6 +220,7 @@
 				<label for="confirmPassword" class="text-lg font-bold font-mono my-2.5 mx-auto">
 					Confirm Password
 				</label>
+				<div class="error font-bold text-sm">{errors.confirmPassword}</div>
 				<input
 					type="password"
 					id="confirmPassword"
@@ -187,6 +248,11 @@
 		<div in:scale class="m-0 p-0">
 			<div class="my-5 mx-auto">
 				<label for="address" class="text-lg font-bold font-mono my-2.5 mx-auto">Address</label>
+				<div class="error font-bold text-sm">{errors.street}</div>
+				<div class="error font-bold text-sm">{errors.city}</div>
+				<div class="error font-bold text-sm">{errors.state}</div>
+				<div class="error font-bold text-sm">{errors.zip}</div>
+				<div class="error font-bold text-sm">{errors.country}</div>
 				<input
 					type="text"
 					id="street"
