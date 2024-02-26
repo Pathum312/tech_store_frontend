@@ -29,3 +29,10 @@ export const validateEmailFormat = (email: string) => {
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	return emailRegex.test(email);
 };
+
+export const isLoggedIn = () => {
+	// Checking if the user has logged in
+	const userData = sessionStorage.getItem('userData');
+	if (!userData) return false;
+	return true;
+};

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { handleKeyDown, isStringValid, validateEmailFormat } from '../services';
-	import Button from './Button.svelte';
+	import { handleKeyDown, isStringValid, validateEmailFormat } from '$lib/services';
+	import { Button } from '$lib/components';
 	export let loggingIn = false;
 
 	let email = '';
