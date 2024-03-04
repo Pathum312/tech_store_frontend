@@ -28,6 +28,7 @@
 	};
 </script>
 
+<title>Login</title>
 <div class="min-h-screen m-auto bg-gray-100 flex items-center justify-center">
 	<Card>
 		<LoginForm on:submit={handleSubmit} {loggingIn} />

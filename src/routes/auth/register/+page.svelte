@@ -27,6 +27,7 @@
 	};
 </script>
 
+<title>Register</title>
 <div class="min-h-screen m-auto bg-gray-100 flex items-center justify-center">
 	<Card>
 		<RegisterForm on:submit={handleSubmit} {signingIn} />
