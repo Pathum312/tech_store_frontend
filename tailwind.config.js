@@ -5,7 +5,15 @@ export default {
 		extend: {
 			fontFamily: {
 				cursive: ['cursive'],
+				whisper: ['whisper']
 			},
+			colors: {
+				primary: '#CCA7A2',
+				secondary: '#AA9FB1'
+			},
+			fontSize: {
+				title: 'clamp(1.125rem, 0.9078rem + 1.0858vi, 1.75rem)'
+			}
 		},
 	},
 	plugins: [],

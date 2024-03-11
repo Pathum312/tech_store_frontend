@@ -12,8 +12,10 @@
 <title>Dashboard</title>
 <div class="w-screen h-screen bg-gray-200 flex items-center justify-center">
 	<div class="text-container bg-gray-50 flex justify-center flex-col items-center">
-		<p class="title font-extrabold font-cursive text-center">Dashboard</p>
-		<p class="content text-center font-cursive">
+		<p class="font-extrabold font-whisper text-center text-title mt-5">Dashboard</p>
+		<p
+			class="content text-center font-cursive text-secondary hover:text-primary my-5 mx-6 cursor-wait"
+		>
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus blanditiis vero id eveniet
 			asperiores quis, praesentium obcaecati voluptates esse, ad dolorem recusandae harum molestiae.
 			Ab?
@@ -32,14 +34,10 @@
 		--step-4: clamp(2.3328rem, 1.6589rem + 3.3697vi, 4.2725rem);
 		--step-5: clamp(2.7994rem, 1.9164rem + 4.4147vi, 5.3406rem);
 	}
-	.title {
-		font-size: var(--step-0);
-		padding-top: 1.25rem;
-	}
 	.content {
 		font-size: var(--step--1);
 		max-width: 60ch;
-		padding: 1.15rem 1.25rem;
+		/* padding: 1.15rem 1.25rem; */
 	}
 	.text-container {
 		width: min(70%, 50rem);
