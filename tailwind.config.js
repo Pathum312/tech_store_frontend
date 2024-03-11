@@ -13,6 +13,11 @@ export default {
 			},
 			fontSize: {
 				title: 'clamp(1.125rem, 0.9078rem + 1.0858vi, 1.75rem)'
+			},
+			width: {
+				paragraphs: '60ch',
+				sidebar: 'min(10%, 5rem)',
+				'sidebar-hover': 'min(15%, 20rem)'
 			}
 		},
 	},
