@@ -5,5 +5,21 @@
 @tailwind utilities;
 
 :root {
-    --text-primary: #fff;
+	--primary: #cca7a2;
+	--secondary: #aa9fb1;
+	--bg-opacity: 1;
+	--white-50: rgb(249 250 251 / var(--bg-opacity));
+	--white-200: rgb(229 231 235 / var(--bg-opacity));
+}
+
+body::-webkit-scrollbar {
+	width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+	background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+	background: var(--secondary);
 }
