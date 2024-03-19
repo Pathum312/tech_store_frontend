@@ -4,6 +4,14 @@
 	import { onMount } from 'svelte';
 	import { Navbar } from '$lib/components';
 
+	// Tabs Management
+	let tabs = ['PS4', 'PS5', 'Logout'];
+	let activeTab = 'PS4';
+
+	const tabChange = (tab: { detail: string }) => {
+		activeTab = tab.detail;
+	};
+
 	onMount(() => {
 		// If the user hasn't logged in, then redirects to login page
 		if (!isLoggedIn()) goto('/auth/login');
@@ -12,7 +20,7 @@
 
 <title>Dashboard</title>
 <div class="wrapper">
-	<Navbar />
+	<Navbar {tabs} {activeTab} on:tabChange={tabChange} />
 	<main>
 		<p>
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam fugit nulla eos accusamus

@@ -1,15 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Whisper&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+	--bg-opacity: 1;
+
+	/* Colors */
 	--primary: #cca7a2;
 	--secondary: #aa9fb1;
-	--bg-opacity: 1;
+	--clr-third-50: #d9bbf9;
+	--clr-third-100: #7871aa;
+	--clr-third-200: #4e5283;
 	--white-50: rgb(249 250 251 / var(--bg-opacity));
 	--white-200: rgb(229 231 235 / var(--bg-opacity));
+
+	/* Font Families */
+	--ff-base: 'IBM Plex Sans', sans-serif;
+	--ff-accent: 'Young Serif', serif;
 }
 
 body::-webkit-scrollbar {
