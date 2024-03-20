@@ -96,6 +96,9 @@
 		padding: 0.5rem;
 		width: 80%;
 		gap: 0.5rem;
+		border-width: 2px;
+		border-color: var(--white-50);
+		border-radius: 0.25em;
 	}
 	.link-text {
 		display: none;
