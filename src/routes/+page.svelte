@@ -3,18 +3,30 @@
 	import { isLoggedIn } from '$lib/services';
 	import { onMount } from 'svelte';
 	import { Navbar } from '$lib/components';
+	import { fetchCategories } from '$lib/api';
 
 	// Tabs Management
-	let tabs = ['PS4', 'PS5', 'Logout'];
-	let activeTab = 'PS4';
+	let tabs: any[] = [];
+	let activeTab = '';
 
 	const tabChange = (tab: { detail: string }) => {
 		activeTab = tab.detail;
 	};
 
-	onMount(() => {
+	onMount(async () => {
+		// Basic Authentication //
 		// If the user hasn't logged in, then redirects to login page
 		if (!isLoggedIn()) goto('/auth/login');
+
+		// Navbar //
+		// Fetch Categories
+		const categories = await fetchCategories();
+		// This will sort the categories alphabetically.
+		categories.sort();
+		// Set the tabs
+		tabs = [...categories, 'Logout'];
+		// Set the active tab
+		activeTab = tabs[0];
 	});
 </script>
 
