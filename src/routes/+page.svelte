@@ -284,7 +284,7 @@
 			flex-direction: row;
 		}
 		main {
-			margin-left: 7rem;
+			margin-left: 5rem;
 		}
 	}
 </style>
