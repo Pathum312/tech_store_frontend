@@ -25,7 +25,14 @@ export const login = async (payload: loginPayload): Promise<any> => {
 	return response;
 };
 
-export const logout = async (payload: any): Promise<any> => {};
+export const logout = async (): Promise<any> => {
+	// The userData is saved as a string the session strorage.
+	// So we have to parse it back to a json object.
+	const data = sessionStorage.getItem('userData');
+	const userData = JSON.parse(`${data}`);
+	const response = await axios.post(`${BACKEND_URL}/auth/logout`, { id: userData.id });
+	return response;
+};
 
 export const register = async (payload: registerPayload): Promise<any> => {
 	const { name, username, email, password, role, street, city, state, zip, country } = payload;

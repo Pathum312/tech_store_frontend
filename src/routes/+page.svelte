@@ -3,14 +3,20 @@
 	import { isLoggedIn } from '$lib/services';
 	import { onMount } from 'svelte';
 	import { Navbar } from '$lib/components';
-	import { fetchCategories } from '$lib/api';
+	import { fetchCategories, logout } from '$lib/api';
 
 	// Tabs Management
 	let tabs: any[] = [];
 	let activeTab = '';
 
-	const tabChange = (tab: { detail: string }) => {
+	const tabChange = async (tab: { detail: string }) => {
 		activeTab = tab.detail;
+
+		if (activeTab.toLowerCase() === 'logout') {
+			await logout();
+			sessionStorage.removeItem('userData');
+			goto('/auth/login');
+		}
 	};
 
 	onMount(async () => {
