@@ -89,7 +89,7 @@
 		position: fixed;
 		background-color: var(--primary);
 		transition: width 400ms ease-in-out;
-		overflow: scroll;
+		/* overflow: scroll; */
 		z-index: 999;
 	}
 	.nav-list {

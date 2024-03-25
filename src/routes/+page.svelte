@@ -89,8 +89,8 @@
 		padding: 1rem;
 		margin-top: 3.5rem;
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-gap: 5rem;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 5rem;
 	}
 
 	/* Individual product */
