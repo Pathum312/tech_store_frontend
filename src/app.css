@@ -21,6 +21,16 @@
 	/* Font Families */
 	--ff-base: 'IBM Plex Sans', sans-serif;
 	--ff-accent: 'Young Serif', serif;
+
+	/* Font Size - Headings */
+	--fs-heading--2: clamp(0.6944rem, 0.5688rem + 0.6281vi, 1.056rem);
+	--fs-heading--1: clamp(0.8333rem, 0.6642rem + 0.8455vi, 1.32rem);
+	--fs-heading-0: clamp(1rem, 0.7742rem + 1.1292vi, 1.65rem);
+	--fs-heading-1: clamp(1.2rem, 0.9003rem + 1.4984vi, 2.0625rem);
+	--fs-heading-2: clamp(1.44rem, 1.0446rem + 1.9772vi, 2.5781rem);
+	--fs-heading-3: clamp(1.728rem, 1.2087rem + 2.5966vi, 3.2227rem);
+	--fs-heading-4: clamp(2.0736rem, 1.3944rem + 3.3958vi, 4.0283rem);
+	--fs-heading-5: clamp(2.4883rem, 1.6033rem + 4.4249vi, 5.0354rem);
 }
 
 body::-webkit-scrollbar {
@@ -32,5 +42,5 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-	background: var(--secondary);
+	background: var(--clr-third-200);
 }

@@ -90,6 +90,7 @@
 		background-color: var(--primary);
 		transition: width 400ms ease-in-out;
 		overflow: scroll;
+		z-index: 999;
 	}
 	.nav-list {
 		list-style: none;
@@ -114,7 +115,6 @@
 		justify-content: center;
 		padding: 1rem 1.5rem;
 		width: 100%;
-		background-color: var(--clr-third-200);
 	}
 	.nav-item {
 		display: flex;

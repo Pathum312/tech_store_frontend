@@ -4,3 +4,4 @@ export { default as LoginForm } from '$lib/components/LoginForm.svelte';
 export { default as RegisterForm } from '$lib/components/RegisterForm.svelte';
 export { default as Navbar } from '$lib/components/Navbar.svelte';
 export { default as Header } from '$lib/components/Header.svelte';
+export { default as SearchBar } from '$lib/components/Searchbar.svelte';
